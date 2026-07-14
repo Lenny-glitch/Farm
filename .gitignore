@@ -1,0 +1,26 @@
+# dependencies
+node_modules/
+functions/node_modules/
+
+# build output
+dist/
+functions/lib/
+
+# firebase
+.firebase/
+firebase-debug.log
+firestore-debug.log
+ui-debug.log
+# .firebaserc is intentionally NOT ignored — it only holds the project alias,
+# no secrets. Committed once a real project is linked.
+
+# real firebase config — never commit real keys
+src/firebase-config.js
+
+# env
+.env
+.env.local
+
+# editor / os
+.DS_Store
+*.log

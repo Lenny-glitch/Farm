@@ -1,0 +1,18 @@
+rules_version = '2';
+
+// Layer 0/1: no user accounts or user-generated data yet (see brief
+// non-goals). Only the `_meta` collection is used, for the offline
+// persistence smoke test (`_meta/ping`, created manually via console).
+// Locked down to read-only, no client writes, until Layer 2 defines a real
+// auth model and data schema for user land/plantings.
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /_meta/{docId} {
+      allow read: if true;
+      allow write: if false;
+    }
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
