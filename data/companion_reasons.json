@@ -1,0 +1,22 @@
+{
+  "allelopathic": {
+    "label": "Allelopathic",
+    "explanation": "One plant releases chemical compounds (through roots, leaves, or decomposing residue) that inhibit the other's growth or seed germination nearby."
+  },
+  "nutrient_competition": {
+    "label": "Nutrient competition",
+    "explanation": "Both plants draw heavily on the same soil nutrients, so planted close together they'll compete and both may come up shorted."
+  },
+  "pest_crossover": {
+    "label": "Pest crossover",
+    "explanation": "Both plants attract the same pest species, so growing them near each other makes it easier for an infestation on one to spread to the other."
+  },
+  "disease_shared": {
+    "label": "Shared disease risk",
+    "explanation": "Both plants are vulnerable to the same disease, so close planting raises the chance an outbreak on one spreads to the other."
+  },
+  "space_competition": {
+    "label": "Space competition",
+    "explanation": "Both plants compete aggressively for the same light, root space, or airflow, so crowding them together stunts one or both."
+  }
+}

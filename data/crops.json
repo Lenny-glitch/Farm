@@ -1,0 +1,418 @@
+[
+  {
+    "id": "corn_sweet",
+    "name": "Sweet Corn",
+    "category": "vegetable",
+    "family": "Poaceae",
+    "days_to_maturity": { "min": 60, "max": 100 },
+    "spacing_in": { "row": 30, "plant": 8 },
+    "sun": "full",
+    "water_in_per_week": 1.5,
+    "water_guidance": {
+      "underwater_signs": "Curling, greyish-green leaves during hot afternoons.",
+      "overwater_signs": "Yellowing lower leaves, shallow weak roots."
+    },
+    "soil_ph_range": { "min": 5.8, "max": 6.8 },
+    "soil_type_pref": ["loam", "sandy_loam"],
+    "nutrient_needs": ["nitrogen_heavy", "prefers_manure"],
+    "amendment_flags": ["epsom_salt_if_yellowing", "rotate_yearly"],
+    "planting": {
+      "start_indoors": false,
+      "direct_sow_after_last_frost_days": 0,
+      "soil_temp_min_f": 60,
+      "succession_interval_days": 14
+    },
+    "companions": {
+      "good": [
+        { "id": "beans_pole", "reason": "nitrogen_fixing", "note": "Beans fix nitrogen in soil corn depletes heavily." },
+        { "id": "squash_summer", "reason": "three_sisters", "note": "Squash's broad leaves shade the soil and suppress weeds around the base of the corn." }
+      ],
+      "bad": [
+        { "id": "tomato", "reason": "pest_crossover", "explanation": "Both attract corn earworm/tomato fruitworm — same pest, same species.", "mitigation": "Not toxic to each other. Fine if space-constrained, just monitor both closely for the shared pest." }
+      ]
+    },
+    "spacing_consequences": {
+      "too_close": "Competes for light and airflow; increases disease from poor ventilation; stunted ear development.",
+      "too_far": "Wastes bed space and weakens wind pollination since corn relies on nearby plants for pollen transfer."
+    },
+    "feeds_after": ["beans_pole", "peas_snap"],
+    "depletes_for": ["tomato", "squash_summer"],
+    "common_pests": ["corn_earworm", "cutworm"],
+    "common_diseases": ["northern_corn_leaf_blight"],
+    "yield_estimate": { "unit": "ears_per_plant", "amount": 1.5 },
+    "notes": "Plant in blocks, not rows — wind pollination needs it. Heavy nitrogen feeder, classic Three Sisters companion with beans and squash."
+  },
+  {
+    "id": "beans_pole",
+    "name": "Pole Beans",
+    "category": "vegetable",
+    "family": "Fabaceae",
+    "days_to_maturity": { "min": 55, "max": 70 },
+    "spacing_in": { "row": 36, "plant": 6 },
+    "sun": "full",
+    "water_in_per_week": 1,
+    "water_guidance": {
+      "underwater_signs": "Wilting leaves in afternoon heat; dry, curling pods.",
+      "overwater_signs": "Yellowing leaves, root rot, poor pod set."
+    },
+    "soil_ph_range": { "min": 6.0, "max": 6.8 },
+    "soil_type_pref": ["loam", "sandy_loam"],
+    "nutrient_needs": ["low_nitrogen_self_fixing", "phosphorus_for_pods"],
+    "amendment_flags": ["inoculate_with_rhizobia"],
+    "planting": {
+      "start_indoors": false,
+      "direct_sow_after_last_frost_days": 7,
+      "soil_temp_min_f": 60,
+      "succession_interval_days": 21
+    },
+    "companions": {
+      "good": [
+        { "id": "corn_sweet", "reason": "trellis_support", "note": "Climbs the corn stalk instead of needing a built trellis — the classic Three Sisters pairing." },
+        { "id": "carrot", "reason": "nitrogen_fixing", "note": "Nitrogen fixed by the beans benefits the shallow-feeding carrots planted nearby or after." }
+      ],
+      "bad": []
+    },
+    "spacing_consequences": {
+      "too_close": "Poor airflow raises fungal disease risk (rust, powdery mildew) and reduces pod set.",
+      "too_far": "Wastes trellis space; weeds fill the gaps."
+    },
+    "feeds_after": [],
+    "depletes_for": [],
+    "common_pests": ["mexican_bean_beetle", "aphids"],
+    "common_diseases": ["bean_rust", "powdery_mildew"],
+    "yield_estimate": { "unit": "lbs_per_plant", "amount": 0.5, "confidence": "estimated" },
+    "notes": "Needs a trellis or tall companion (like corn) to climb. Fixes nitrogen in soil — good predecessor for heavy feeders like corn or kale."
+  },
+  {
+    "id": "peas_snap",
+    "name": "Snap Peas",
+    "category": "vegetable",
+    "family": "Fabaceae",
+    "days_to_maturity": { "min": 55, "max": 70 },
+    "spacing_in": { "row": 18, "plant": 3 },
+    "sun": "full",
+    "water_in_per_week": 1,
+    "water_guidance": {
+      "underwater_signs": "Wilting vines, poor pod fill.",
+      "overwater_signs": "Yellowing leaves, powdery mildew, root rot."
+    },
+    "soil_ph_range": { "min": 6.0, "max": 7.0 },
+    "soil_type_pref": ["loam", "sandy_loam"],
+    "nutrient_needs": ["low_nitrogen_self_fixing", "phosphorus_for_pods"],
+    "amendment_flags": ["inoculate_with_rhizobia"],
+    "planting": {
+      "start_indoors": false,
+      "direct_sow_after_last_frost_days": -21,
+      "soil_temp_min_f": 45,
+      "succession_interval_days": 14
+    },
+    "companions": {
+      "good": [
+        { "id": "carrot", "reason": "nitrogen_fixing", "note": "Peas mature and get pulled early, so they don't compete with carrots for space, and leave nitrogen behind." }
+      ],
+      "bad": []
+    },
+    "spacing_consequences": {
+      "too_close": "Crowded vines get poor airflow, raising powdery mildew risk.",
+      "too_far": "Wastes trellis space."
+    },
+    "feeds_after": [],
+    "depletes_for": [],
+    "common_pests": ["aphids", "pea_weevil"],
+    "common_diseases": ["powdery_mildew"],
+    "yield_estimate": { "unit": "lbs_per_plant", "amount": 0.3, "confidence": "estimated" },
+    "notes": "Cool-season crop — sow several weeks BEFORE the last frost, not after (note the negative direct_sow_after_last_frost_days). Stops producing once summer heat sets in."
+  },
+  {
+    "id": "tomato",
+    "name": "Tomato",
+    "category": "vegetable",
+    "family": "Solanaceae",
+    "days_to_maturity": { "min": 60, "max": 85 },
+    "spacing_in": { "row": 36, "plant": 24 },
+    "sun": "full",
+    "water_in_per_week": 1.5,
+    "water_guidance": {
+      "underwater_signs": "Afternoon leaf curl/wilting; blossom end rot from inconsistent watering.",
+      "overwater_signs": "Cracked fruit, yellowing lower leaves, fungal leaf spot."
+    },
+    "soil_ph_range": { "min": 6.0, "max": 6.8 },
+    "soil_type_pref": ["loam", "sandy_loam"],
+    "nutrient_needs": ["phosphorus_for_fruit", "calcium_for_blossom_end_rot", "moderate_nitrogen"],
+    "amendment_flags": ["calcium_if_blossom_end_rot", "stake_or_cage"],
+    "planting": {
+      "start_indoors": true,
+      "direct_sow_after_last_frost_days": 14,
+      "soil_temp_min_f": 60,
+      "succession_interval_days": 21
+    },
+    "companions": {
+      "good": [
+        { "id": "carrot", "reason": "mutual_benefit", "note": "Tomato foliage shades the soil for carrots; carrots aerate soil around tomato roots." },
+        { "id": "lettuce", "reason": "living_mulch", "note": "Fast, shallow-rooted lettuce works as living ground cover under taller tomato plants without competing much." }
+      ],
+      "bad": [
+        { "id": "corn_sweet", "reason": "pest_crossover", "explanation": "Both attract corn earworm/tomato fruitworm — same pest, same species.", "mitigation": "Not toxic to each other. Fine if space-constrained, just monitor both closely for the shared pest." }
+      ]
+    },
+    "spacing_consequences": {
+      "too_close": "Poor airflow raises early blight and other fungal disease risk; plants compete for light.",
+      "too_far": "Wastes bed space, more weeding."
+    },
+    "feeds_after": ["beans_pole", "peas_snap"],
+    "depletes_for": ["pepper_bell"],
+    "common_pests": ["tomato_hornworm", "corn_earworm"],
+    "common_diseases": ["early_blight", "blossom_end_rot"],
+    "yield_estimate": { "unit": "lbs_per_plant", "amount": 10, "confidence": "estimated" },
+    "notes": "Stake or cage early so you don't disturb roots later. Avoid planting where other nightshades (pepper, potato) grew the previous year — shared soil-borne disease risk."
+  },
+  {
+    "id": "pepper_bell",
+    "name": "Bell Pepper",
+    "category": "vegetable",
+    "family": "Solanaceae",
+    "days_to_maturity": { "min": 60, "max": 90 },
+    "spacing_in": { "row": 24, "plant": 18 },
+    "sun": "full",
+    "water_in_per_week": 1.25,
+    "water_guidance": {
+      "underwater_signs": "Wilting, dropped blossoms in heat.",
+      "overwater_signs": "Root rot, blossom end rot."
+    },
+    "soil_ph_range": { "min": 5.8, "max": 6.8 },
+    "soil_type_pref": ["loam", "sandy_loam"],
+    "nutrient_needs": ["phosphorus_for_fruit", "moderate_nitrogen"],
+    "amendment_flags": ["calcium_if_blossom_end_rot"],
+    "planting": {
+      "start_indoors": true,
+      "direct_sow_after_last_frost_days": 21,
+      "soil_temp_min_f": 65,
+      "succession_interval_days": 0
+    },
+    "companions": {
+      "good": [
+        { "id": "carrot", "reason": "space_efficient", "note": "Low, shallow-rooted carrots don't compete much with pepper's root zone." }
+      ],
+      "bad": []
+    },
+    "spacing_consequences": {
+      "too_close": "Poor airflow raises fungal disease risk; plants shade each other's fruit set.",
+      "too_far": "Wastes bed space."
+    },
+    "feeds_after": ["beans_pole", "peas_snap"],
+    "depletes_for": [],
+    "common_pests": ["aphids", "pepper_weevil"],
+    "common_diseases": ["bacterial_leaf_spot"],
+    "yield_estimate": { "unit": "lbs_per_plant", "amount": 3, "confidence": "estimated" },
+    "notes": "Slower to establish than tomato — start indoors early. Fruit color changes as it ripens (green to red/yellow/orange depending on variety); flavor sweetens the longer it's left on the plant."
+  },
+  {
+    "id": "squash_summer",
+    "name": "Summer Squash",
+    "category": "vegetable",
+    "family": "Cucurbitaceae",
+    "days_to_maturity": { "min": 45, "max": 60 },
+    "spacing_in": { "row": 36, "plant": 24 },
+    "sun": "full",
+    "water_in_per_week": 1.5,
+    "water_guidance": {
+      "underwater_signs": "Midday wilting; small or bitter fruit.",
+      "overwater_signs": "Powdery mildew, root rot."
+    },
+    "soil_ph_range": { "min": 6.0, "max": 6.8 },
+    "soil_type_pref": ["loam", "sandy_loam"],
+    "nutrient_needs": ["moderate_nitrogen", "potassium_for_fruit"],
+    "amendment_flags": ["compost_heavy_feeder"],
+    "planting": {
+      "start_indoors": false,
+      "direct_sow_after_last_frost_days": 7,
+      "soil_temp_min_f": 65,
+      "succession_interval_days": 21
+    },
+    "companions": {
+      "good": [
+        { "id": "corn_sweet", "reason": "three_sisters", "note": "Broad leaves shade the soil around corn, suppressing weeds and retaining moisture." },
+        { "id": "beans_pole", "reason": "nitrogen_fixing", "note": "Benefits from the nitrogen beans leave behind." }
+      ],
+      "bad": [
+        { "id": "cucumber", "reason": "pest_crossover", "note": "Same family (Cucurbitaceae) — cucumber beetles move freely between them and can vector bacterial wilt to both." }
+      ]
+    },
+    "spacing_consequences": {
+      "too_close": "Poor airflow raises powdery mildew risk; sprawling vines compete hard for space.",
+      "too_far": "Wastes bed space early in the season before vines fill in."
+    },
+    "feeds_after": ["beans_pole", "peas_snap"],
+    "depletes_for": [],
+    "common_pests": ["squash_vine_borer", "cucumber_beetle"],
+    "common_diseases": ["powdery_mildew", "bacterial_wilt"],
+    "yield_estimate": { "unit": "lbs_per_plant", "amount": 6, "confidence": "estimated" },
+    "notes": "Prolific once established — two or three plants usually cover a household. Harvest young and small for the best texture; oversized fruit turns woody."
+  },
+  {
+    "id": "cucumber",
+    "name": "Cucumber",
+    "category": "vegetable",
+    "family": "Cucurbitaceae",
+    "days_to_maturity": { "min": 50, "max": 65 },
+    "spacing_in": { "row": 36, "plant": 12 },
+    "sun": "full",
+    "water_in_per_week": 1.5,
+    "water_guidance": {
+      "underwater_signs": "Bitter fruit, wilting vines.",
+      "overwater_signs": "Root rot, powdery mildew."
+    },
+    "soil_ph_range": { "min": 6.0, "max": 6.8 },
+    "soil_type_pref": ["loam", "sandy_loam"],
+    "nutrient_needs": ["moderate_nitrogen", "potassium_for_fruit"],
+    "amendment_flags": ["compost_heavy_feeder"],
+    "planting": {
+      "start_indoors": false,
+      "direct_sow_after_last_frost_days": 14,
+      "soil_temp_min_f": 65,
+      "succession_interval_days": 21
+    },
+    "companions": {
+      "good": [
+        { "id": "beans_pole", "reason": "nitrogen_fixing", "note": "Benefits from nitrogen beans leave behind." }
+      ],
+      "bad": [
+        { "id": "squash_summer", "reason": "pest_crossover", "note": "Same family (Cucurbitaceae) — cucumber beetles move freely between them and can vector bacterial wilt to both." }
+      ]
+    },
+    "spacing_consequences": {
+      "too_close": "Poor airflow raises powdery mildew risk; crowding deforms fruit.",
+      "too_far": "Wastes trellis or bed space."
+    },
+    "feeds_after": ["beans_pole", "peas_snap"],
+    "depletes_for": [],
+    "common_pests": ["cucumber_beetle", "aphids"],
+    "common_diseases": ["powdery_mildew", "bacterial_wilt"],
+    "yield_estimate": { "unit": "lbs_per_plant", "amount": 5, "confidence": "estimated" },
+    "notes": "Trellising keeps fruit straighter and improves airflow compared to letting vines sprawl on the ground."
+  },
+  {
+    "id": "lettuce",
+    "name": "Lettuce",
+    "category": "vegetable",
+    "family": "Asteraceae",
+    "days_to_maturity": { "min": 30, "max": 55 },
+    "spacing_in": { "row": 12, "plant": 8 },
+    "sun": "partial",
+    "water_in_per_week": 1,
+    "water_guidance": {
+      "underwater_signs": "Bitter taste, premature bolting.",
+      "overwater_signs": "Mushy leaves, rot at the base."
+    },
+    "soil_ph_range": { "min": 6.0, "max": 7.0 },
+    "soil_type_pref": ["loam", "sandy_loam"],
+    "nutrient_needs": ["moderate_nitrogen"],
+    "amendment_flags": ["compost_light"],
+    "planting": {
+      "start_indoors": false,
+      "direct_sow_after_last_frost_days": -14,
+      "soil_temp_min_f": 40,
+      "succession_interval_days": 10
+    },
+    "companions": {
+      "good": [
+        { "id": "carrot", "reason": "different_root_depths", "note": "Shallow lettuce roots and deep carrot roots don't compete much, and lettuce matures much faster so it's out of the way before carrots need the space." },
+        { "id": "tomato", "reason": "living_mulch", "note": "Grows well in the partial shade cast by taller tomato plants, especially once summer heats up." }
+      ],
+      "bad": []
+    },
+    "spacing_consequences": {
+      "too_close": "Stunted heads and poor air circulation invites rot.",
+      "too_far": "Wastes bed space, more weeding."
+    },
+    "feeds_after": [],
+    "depletes_for": [],
+    "common_pests": ["aphids", "slugs"],
+    "common_diseases": ["downy_mildew"],
+    "yield_estimate": { "unit": "oz_per_plant", "amount": 4, "confidence": "estimated" },
+    "notes": "Bolts (turns bitter, goes to seed) in summer heat — best as a spring/fall crop, or grown in partial shade during hot months. Fast enough to succession-plant every couple of weeks for a steady supply."
+  },
+  {
+    "id": "kale",
+    "name": "Kale",
+    "category": "vegetable",
+    "family": "Brassicaceae",
+    "days_to_maturity": { "min": 55, "max": 65 },
+    "spacing_in": { "row": 18, "plant": 12 },
+    "sun": "full",
+    "water_in_per_week": 1,
+    "water_guidance": {
+      "underwater_signs": "Tough, bitter leaves; wilting.",
+      "overwater_signs": "Yellowing leaves, root rot."
+    },
+    "soil_ph_range": { "min": 6.0, "max": 7.5 },
+    "soil_type_pref": ["loam", "clay_loam"],
+    "nutrient_needs": ["nitrogen_heavy"],
+    "amendment_flags": ["compost_heavy_feeder", "rotate_yearly"],
+    "planting": {
+      "start_indoors": true,
+      "direct_sow_after_last_frost_days": -21,
+      "soil_temp_min_f": 45,
+      "succession_interval_days": 21
+    },
+    "companions": {
+      "good": [
+        { "id": "beans_pole", "reason": "nitrogen_fixing", "note": "Benefits from nitrogen beans leave behind — kale is a heavy nitrogen feeder." }
+      ],
+      "bad": []
+    },
+    "spacing_consequences": {
+      "too_close": "Stunted leaves and poor airflow invites fungal issues.",
+      "too_far": "Wastes bed space."
+    },
+    "feeds_after": ["beans_pole", "peas_snap"],
+    "depletes_for": [],
+    "common_pests": ["cabbage_worm", "aphids"],
+    "common_diseases": ["clubroot"],
+    "yield_estimate": { "unit": "lbs_per_plant", "amount": 1, "confidence": "estimated" },
+    "notes": "Cut-and-come-again — harvest outer leaves and the plant keeps producing from the center. Flavor improves after a light frost. Rotate brassica beds yearly to avoid clubroot buildup."
+  },
+  {
+    "id": "carrot",
+    "name": "Carrot",
+    "category": "vegetable",
+    "family": "Apiaceae",
+    "days_to_maturity": { "min": 60, "max": 80 },
+    "spacing_in": { "row": 12, "plant": 3 },
+    "sun": "full",
+    "water_in_per_week": 1,
+    "water_guidance": {
+      "underwater_signs": "Stunted, woody roots; splitting if heavily watered after a dry spell.",
+      "overwater_signs": "Forked roots, rot."
+    },
+    "soil_ph_range": { "min": 5.8, "max": 6.8 },
+    "soil_type_pref": ["sandy_loam", "loose_loam"],
+    "nutrient_needs": ["low_nitrogen", "potassium_for_roots"],
+    "amendment_flags": ["avoid_fresh_manure", "remove_rocks_for_straight_roots"],
+    "planting": {
+      "start_indoors": false,
+      "direct_sow_after_last_frost_days": -14,
+      "soil_temp_min_f": 45,
+      "succession_interval_days": 21
+    },
+    "companions": {
+      "good": [
+        { "id": "beans_pole", "reason": "nitrogen_fixing", "note": "Benefits from nitrogen beans leave behind." },
+        { "id": "peas_snap", "reason": "nitrogen_fixing", "note": "Peas mature and clear out early, leaving nitrogen and space behind." },
+        { "id": "tomato", "reason": "mutual_benefit", "note": "Tomato foliage shades the soil; carrots aerate soil around tomato roots." },
+        { "id": "lettuce", "reason": "different_root_depths", "note": "Shallow lettuce roots and deep carrot roots don't compete much." }
+      ],
+      "bad": []
+    },
+    "spacing_consequences": {
+      "too_close": "Crowding stunts or forks the roots.",
+      "too_far": "Wastes bed space."
+    },
+    "feeds_after": [],
+    "depletes_for": [],
+    "common_pests": ["carrot_rust_fly", "aphids"],
+    "common_diseases": ["alternaria_leaf_blight"],
+    "yield_estimate": { "unit": "lbs_per_plant", "amount": 0.15, "confidence": "estimated" },
+    "notes": "Needs loose, rock-free soil to grow straight roots — heavy clay or compacted soil causes stunted or forked carrots. Avoid fresh manure or high-nitrogen amendments right before planting; excess nitrogen causes hairy, forked roots."
+  }
+]

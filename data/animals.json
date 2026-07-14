@@ -1,0 +1,180 @@
+[
+  {
+    "id": "chicken_laying_hen",
+    "name": "Laying Hen",
+    "space_sqft_per_animal": 4,
+    "space_type": "coop_plus_run",
+    "feed": {
+      "type": "layer_feed_or_scratch",
+      "lbs_per_month": 7.5,
+      "self_sufficient_option": {
+        "feed_crop": "alfalfa",
+        "lbs_yield_per_100sqft_per_month": 25,
+        "sqft_needed_per_animal": 30
+      }
+    },
+    "water_gal_per_day": 0.5,
+    "maturity_weeks": 20,
+    "productive_lifespan_years": 3,
+    "yield": {
+      "primary": { "product": "eggs", "amount_per_week": 5, "unit": "eggs" },
+      "secondary": [{ "product": "meat", "note": "End-of-lay bird, ~4-5 lbs dressed, not the primary use case for a laying breed." }],
+      "manure_lbs_per_month": 15
+    },
+    "uses": ["eggs", "pest_control", "manure_for_compost", "tills_bedding"],
+    "byproducts": [
+      {
+        "id": "manure",
+        "raw_use": "unsafe_direct",
+        "cure_required_days": 120,
+        "cure_method": "Compost in a pile, turning every 1-2 weeks, until it's dark, crumbly, and no longer smells sharp/ammonia-like.",
+        "food_crop_min_days_before_harvest": 90,
+        "safety_note": "Raw manure carries pathogens and will burn roots with excess nitrogen. Don't apply fresh near anything you'll eat soon."
+      }
+    ],
+    "compatible_with": ["orchard", "garden_offseason"],
+    "notes": "Free-range in orchard or fallow beds controls insects and adds nitrogen. Keep off active seedbeds — they'll scratch up new plantings."
+  },
+  {
+    "id": "goat_dairy",
+    "name": "Dairy Goat (doe)",
+    "space_sqft_per_animal": 250,
+    "space_type": "pen_plus_browse_pasture",
+    "feed": {
+      "type": "hay_plus_browse",
+      "lbs_per_month": 180,
+      "self_sufficient_option": {
+        "feed_crop": "pasture_mix",
+        "lbs_yield_per_100sqft_per_month": 15,
+        "sqft_needed_per_animal": 10000,
+        "confidence": "estimated"
+      }
+    },
+    "water_gal_per_day": 3,
+    "maturity_weeks": 36,
+    "productive_lifespan_years": 8,
+    "yield": {
+      "primary": { "product": "milk", "amount_per_week": 7, "unit": "gallons", "confidence": "estimated" },
+      "secondary": [{ "product": "meat", "note": "Cull wethers/bucklings, not the primary use case for a dairy breed." }],
+      "manure_lbs_per_month": 50
+    },
+    "uses": ["milk", "browse_clearing", "manure_for_compost"],
+    "byproducts": [
+      {
+        "id": "manure",
+        "raw_use": "usable_with_caution",
+        "cure_required_days": 60,
+        "cure_method": "Compost or age a few weeks. Goat manure is a 'cold' manure — lower nitrogen than poultry manure, so it's less likely to burn plants, but composting still reduces pathogen risk and breaks the pellets down faster.",
+        "food_crop_min_days_before_harvest": 60,
+        "safety_note": "Lower burn risk than poultry manure, but still compost before use near food crops to reduce pathogen risk."
+      }
+    ],
+    "compatible_with": ["orchard", "browse_land"],
+    "notes": "Needs sturdy, tall fencing — goats are notorious escape artists and will test weak points constantly. Browsing clears brush and weeds effectively, but will also strip bark from young trees if left unsupervised near an orchard."
+  },
+  {
+    "id": "rabbit_meat",
+    "name": "Meat Rabbit (e.g. New Zealand White)",
+    "space_sqft_per_animal": 8,
+    "space_type": "hutch",
+    "feed": {
+      "type": "pellets_plus_hay",
+      "lbs_per_month": 15,
+      "self_sufficient_option": {
+        "feed_crop": "alfalfa_or_clover",
+        "lbs_yield_per_100sqft_per_month": 25,
+        "sqft_needed_per_animal": 15,
+        "confidence": "estimated"
+      }
+    },
+    "water_gal_per_day": 0.5,
+    "maturity_weeks": 12,
+    "productive_lifespan_years": 3,
+    "yield": {
+      "primary": { "product": "meat", "amount_per_week": 0.5, "unit": "lbs_dressed_avg", "confidence": "estimated" },
+      "secondary": [{ "product": "pelt", "note": "Byproduct of processing, rarely used by hobbyist keepers." }],
+      "manure_lbs_per_month": 4
+    },
+    "uses": ["meat", "manure_for_compost"],
+    "byproducts": [
+      {
+        "id": "manure",
+        "raw_use": "safe_direct",
+        "cure_required_days": 0,
+        "cure_method": "None required — rabbit manure is a 'cold' manure, low enough in nitrogen to apply directly to beds without composting or burning plants.",
+        "food_crop_min_days_before_harvest": 0,
+        "safety_note": "One of the few manures safe to use fresh. Still good practice to compost it if it's mixed with soiled bedding rather than pure droppings."
+      }
+    ],
+    "compatible_with": ["garden_offseason", "hutch_only"],
+    "notes": "Schema note: meat yield doesn't really happen on a weekly cadence — it comes in litters (roughly 6-8 kits per litter, about every 6-8 weeks, reaching processing weight around 10-12 weeks). The amount_per_week figure above is a rough average, not an actual production rhythm. Manure yield, by contrast, fits the schema fine and is one of the few manures safe to use without composting."
+  },
+  {
+    "id": "duck_layer",
+    "name": "Laying Duck (e.g. Khaki Campbell)",
+    "space_sqft_per_animal": 6,
+    "space_type": "coop_plus_run_with_water_access",
+    "feed": {
+      "type": "layer_feed_or_forage",
+      "lbs_per_month": 10,
+      "self_sufficient_option": {
+        "feed_crop": "pasture_and_pond_forage",
+        "lbs_yield_per_100sqft_per_month": 20,
+        "sqft_needed_per_animal": 40,
+        "confidence": "estimated"
+      }
+    },
+    "water_gal_per_day": 1,
+    "maturity_weeks": 26,
+    "productive_lifespan_years": 3,
+    "yield": {
+      "primary": { "product": "eggs", "amount_per_week": 5, "unit": "eggs" },
+      "secondary": [{ "product": "meat", "note": "End-of-lay bird, larger dressed weight than a spent hen, roughly 5-6 lbs." }],
+      "manure_lbs_per_month": 18
+    },
+    "uses": ["eggs", "pest_control", "manure_for_compost", "slug_and_snail_control"],
+    "byproducts": [
+      {
+        "id": "manure",
+        "raw_use": "unsafe_direct",
+        "cure_required_days": 120,
+        "cure_method": "Compost the same as chicken manure — turn every 1-2 weeks until dark, crumbly, and no longer smells sharp/ammonia-like.",
+        "food_crop_min_days_before_harvest": 90,
+        "safety_note": "High nitrogen and pathogen risk fresh — handle the same as chicken manure."
+      }
+    ],
+    "compatible_with": ["orchard", "garden_offseason", "pond_or_pool_access"],
+    "notes": "Excellent slug and snail control, arguably better than chickens for that specific job, and less likely to scratch up beds. Needs water deep enough to dunk its whole head — not just a drinking cup — for eye and nostril health, water_gal_per_day above is drinking only."
+  },
+  {
+    "id": "honeybee_hive",
+    "name": "Honeybee (Langstroth Hive)",
+    "space_sqft_per_animal": 4,
+    "space_type": "hive_footprint_plus_flight_clearance",
+    "feed": {
+      "type": "forage_self_sufficient_most_of_year",
+      "lbs_per_month": 0,
+      "self_sufficient_option": {
+        "feed_crop": "diverse_flowering_forage",
+        "lbs_yield_per_100sqft_per_month": 0,
+        "sqft_needed_per_animal": 0,
+        "confidence": "estimated"
+      }
+    },
+    "water_gal_per_day": 0.1,
+    "maturity_weeks": 6,
+    "productive_lifespan_years": 2,
+    "yield": {
+      "primary": { "product": "honey", "amount_per_week": 1, "unit": "lbs", "confidence": "estimated" },
+      "secondary": [
+        { "product": "wax", "note": "Cappings/comb, byproduct of honey harvest." },
+        { "product": "pollination", "note": "Arguably the biggest practical benefit for a home orchard or garden — better fruit set — even if honey is never harvested." }
+      ],
+      "manure_lbs_per_month": 0
+    },
+    "uses": ["honey", "pollination", "wax"],
+    "byproducts": [],
+    "compatible_with": ["orchard", "garden", "meadow_or_wildflower_area"],
+    "notes": "Doesn't map cleanly onto this schema — flagging for Layer 2 planning. A hive is a colony, not one animal: space/water/yield here are 'per hive', not 'per bee'. Forage range extends 2-3 miles beyond any fenced 'space', so the self_sufficient_option sqft fields are set to 0 (not meaningful at this scale) rather than a made-up number. Honey yield really comes in one or two seasonal harvests (40-80+ lbs/year in a good region), not a weekly trickle — the amount_per_week figure is a rough average. productive_lifespan_years describes hive management cadence (requeening), not any single bee's lifespan (workers live only weeks)."
+  }
+]
