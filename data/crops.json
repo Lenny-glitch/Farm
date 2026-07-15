@@ -235,7 +235,7 @@
         { "id": "beans_pole", "reason": "nitrogen_fixing", "note": "Benefits from the nitrogen beans leave behind." }
       ],
       "bad": [
-        { "id": "cucumber", "reason": "pest_crossover", "note": "Same family (Cucurbitaceae) — cucumber beetles move freely between them and can vector bacterial wilt to both." }
+        { "id": "cucumber", "reason": "pest_crossover", "explanation": "Same family (Cucurbitaceae) — cucumber beetles move freely between them and can vector bacterial wilt to both." }
       ]
     },
     "spacing_consequences": {
@@ -277,7 +277,7 @@
         { "id": "beans_pole", "reason": "nitrogen_fixing", "note": "Benefits from nitrogen beans leave behind." }
       ],
       "bad": [
-        { "id": "squash_summer", "reason": "pest_crossover", "note": "Same family (Cucurbitaceae) — cucumber beetles move freely between them and can vector bacterial wilt to both." }
+        { "id": "squash_summer", "reason": "pest_crossover", "explanation": "Same family (Cucurbitaceae) — cucumber beetles move freely between them and can vector bacterial wilt to both." }
       ]
     },
     "spacing_consequences": {
