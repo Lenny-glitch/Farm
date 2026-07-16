@@ -60,3 +60,11 @@ which is why the example-file convention exists — keep following it.
 - `functions/` — Cloud Functions source.
 - `src/` — React app source.
 - `PROJECT_STATE.md` — current status, judgment calls, open questions.
+
+## Environment note
+This dev machine shuts down at end of day, which cuts any active Claude Code
+session abruptly with no warning. Commit early and often. Don't leave
+meaningful work uncommitted at the end of a working session assuming you'll
+resume in the same session — assume any session may end without notice, and
+structure work so a clean commit exists at as many points as reasonably
+possible.
