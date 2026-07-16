@@ -1,16 +1,20 @@
 rules_version = '2';
 
-// Layer 0/1: no user accounts or user-generated data yet (see brief
-// non-goals). Only the `_meta` collection is used, for the offline
-// persistence smoke test (`_meta/ping`, created manually via console).
-// Locked down to read-only, no client writes, until Layer 2 defines a real
-// auth model and data schema for user land/plantings.
+// Layer 2: Firebase Anonymous Auth separates users' data by uid. A user can
+// only read/write their own users/{uid}/... subtree (plots, beds,
+// plantings) — no sharing, no cross-user reads, per the brief's minimal
+// auth model.
 service cloud.firestore {
   match /databases/{database}/documents {
     match /_meta/{docId} {
       allow read: if true;
       allow write: if false;
     }
+
+    match /users/{uid}/{document=**} {
+      allow read, write: if request.auth != null && request.auth.uid == uid;
+    }
+
     match /{document=**} {
       allow read, write: if false;
     }

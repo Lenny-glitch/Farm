@@ -200,3 +200,491 @@ button {
   font-size: 0.75rem;
   color: var(--color-text-muted);
 }
+
+/* ---------- Layer 2: map, drawing, beds, modals ---------- */
+
+/* Every tappable control in this layer aims for a real 44px+ target —
+   the brief's target users are not tech-literate, so small precise taps
+   are the wrong default here. */
+
+.main-nav {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.nav-tab {
+  min-height: 44px;
+  padding: 0.5rem 1.1rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text-muted);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.nav-tab.active {
+  background: var(--color-primary);
+  color: white;
+  border-color: var(--color-primary);
+}
+
+.btn-primary,
+.btn-secondary,
+.btn-ghost,
+.btn-small {
+  min-height: 44px;
+  padding: 0.6rem 1.2rem;
+  border-radius: var(--radius);
+  font-size: 1rem;
+  font-weight: 600;
+  border: 1px solid transparent;
+}
+
+.btn-primary {
+  background: var(--color-primary);
+  color: white;
+}
+
+.btn-primary:disabled {
+  background: var(--color-border);
+  color: var(--color-text-muted);
+  cursor: not-allowed;
+}
+
+.btn-primary.danger {
+  background: var(--color-bad);
+}
+
+.btn-secondary {
+  background: var(--color-surface);
+  border-color: var(--color-border);
+  color: var(--color-text);
+}
+
+.btn-secondary:disabled {
+  color: var(--color-text-muted);
+  cursor: not-allowed;
+}
+
+.btn-ghost {
+  background: none;
+  border-color: transparent;
+  color: var(--color-primary-dark);
+  min-height: 40px;
+  padding: 0.4rem 0.8rem;
+}
+
+.btn-ghost.danger {
+  color: var(--color-bad);
+}
+
+.btn-small {
+  min-height: 38px;
+  padding: 0.4rem 0.9rem;
+  font-size: 0.9rem;
+  background: var(--color-primary);
+  color: white;
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.9rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+}
+
+.plot-name-label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  width: 100%;
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+}
+
+.plot-name-label input {
+  margin-bottom: 0;
+}
+
+/* Shared 4:3 canvas surface for both drawing and the map view — keep this
+   ratio in sync with CANVAS_W/CANVAS_H in ShapeCanvas.jsx. */
+.shape-canvas {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background: repeating-linear-gradient(0deg, #fbf9f2 0px, #fbf9f2 23px, #efeadb 24px), #fbf9f2;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  touch-action: none;
+  display: block;
+}
+
+.drawer-title {
+  font-weight: 600;
+  color: var(--color-primary-dark);
+  margin: 0 0 0.25rem;
+}
+
+.drawer-hint {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  margin: 0 0 0.75rem;
+}
+
+.drawer-canvas {
+  cursor: crosshair;
+}
+
+.drawer-shape-preview {
+  fill: rgba(74, 124, 89, 0.18);
+  stroke: var(--color-primary);
+  stroke-width: 0.7;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.drawer-guide-line {
+  fill: none;
+  stroke: var(--color-primary);
+  stroke-width: 0.5;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  stroke-dasharray: 2 1.5;
+}
+
+.drawer-point {
+  fill: var(--color-accent);
+  stroke: white;
+  stroke-width: 0.4;
+}
+
+.drawer-controls,
+.drawer-actions {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.drawer-actions {
+  justify-content: space-between;
+}
+
+.plot-view {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.plot-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.plot-name {
+  color: var(--color-primary-dark);
+  margin: 0;
+}
+
+.plot-canvas {
+  cursor: default;
+}
+
+.map-boundary {
+  fill: rgba(181, 101, 29, 0.06);
+  stroke: var(--color-accent);
+  stroke-width: 0.6;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.map-bed-group {
+  cursor: pointer;
+}
+
+.map-bed {
+  fill: rgba(74, 124, 89, 0.28);
+  stroke: var(--color-primary-dark);
+  stroke-width: 0.6;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  transition: fill 0.15s;
+}
+
+.map-bed-group:hover .map-bed {
+  fill: rgba(74, 124, 89, 0.45);
+}
+
+.map-bed-label {
+  font-size: 3px;
+  fill: var(--color-primary-dark);
+  font-weight: 600;
+  pointer-events: none;
+}
+
+/* ---------- Modals / expandable info ---------- */
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(43, 43, 36, 0.45);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  z-index: 50;
+  padding: 0;
+}
+
+.modal-sheet {
+  background: var(--color-surface);
+  border-radius: var(--radius) var(--radius) 0 0;
+  padding: 1.5rem;
+  width: 100%;
+  max-width: 640px;
+  max-height: 88vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 -2px 16px rgba(0, 0, 0, 0.15);
+}
+
+@media (min-width: 700px) {
+  .modal-backdrop {
+    align-items: center;
+  }
+  .modal-sheet {
+    border-radius: var(--radius);
+  }
+}
+
+.modal-close {
+  position: sticky;
+  float: right;
+  top: 0;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  width: 40px;
+  height: 40px;
+  font-size: 1.3rem;
+  line-height: 1;
+  color: var(--color-text-muted);
+}
+
+.modal-keyword-heading {
+  color: var(--color-primary-dark);
+  text-transform: capitalize;
+  margin-top: 0;
+}
+
+.info-link {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--color-primary-dark);
+  font: inherit;
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: var(--color-border);
+  text-underline-offset: 2px;
+  min-height: 32px;
+}
+
+/* ---------- Bed panel ---------- */
+
+.bed-panel .section {
+  margin-top: 1.4rem;
+}
+
+.bed-name-input {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--color-primary-dark);
+  border: none;
+  border-bottom: 2px solid var(--color-border);
+  padding: 0.3rem 0;
+  width: calc(100% - 3rem);
+  background: none;
+}
+
+.bed-notes {
+  width: 100%;
+  min-height: 70px;
+  padding: 0.6rem 0.8rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--color-border);
+  font: inherit;
+  resize: vertical;
+}
+
+.conditions-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1rem;
+}
+
+.conditions-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+.conditions-form select,
+.conditions-form input {
+  min-height: 44px;
+  padding: 0.5rem 0.7rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--color-border);
+  font-size: 1rem;
+  background: var(--color-surface);
+  color: var(--color-text);
+}
+
+.section-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.planting-item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.planting-item .note {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+
+.remove-link {
+  margin-left: auto;
+  background: none;
+  border: none;
+  color: var(--color-bad);
+  font-size: 0.85rem;
+  min-height: 36px;
+  padding: 0 0.3rem;
+}
+
+.suggestion-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.suggestion-card {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 0.75rem 0.9rem;
+  background: var(--color-bg);
+}
+
+.suggestion-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.grade-badge {
+  font-size: 0.75rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  white-space: nowrap;
+  font-weight: 600;
+}
+
+.grade-good-fit {
+  background: #eef4ec;
+  color: var(--color-primary-dark);
+}
+
+.grade-okay-fit {
+  background: #fbeecb;
+  color: #7a5b0a;
+}
+
+.grade-poor-fit {
+  background: #f7ece8;
+  color: var(--color-bad);
+}
+
+.grade-not-sure-yet {
+  background: var(--color-border);
+  color: var(--color-text-muted);
+}
+
+.suggestion-reasons {
+  margin: 0.4rem 0 0;
+  padding-left: 1.1rem;
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+.tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.5rem;
+}
+
+.tag-chip {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+  text-decoration: none;
+  min-height: 30px;
+}
+
+.danger-zone {
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.confirm-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  font-size: 0.9rem;
+}
+
+/* ---------- Planting picker ---------- */
+
+.picker-card {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  overflow: hidden;
+}
+
+.picker-card-main {
+  background: none;
+  border: none;
+  text-align: left;
+  padding: 0.9rem;
+  width: 100%;
+}
+
+.picker-card-info {
+  border-top: 1px solid var(--color-border);
+  padding: 0.5rem 0.9rem;
+  font-size: 0.8rem;
+  text-align: center;
+}

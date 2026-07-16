@@ -4,6 +4,7 @@ import {
   persistentLocalCache,
   persistentMultipleTabManager
 } from 'firebase/firestore'
+import { getAuth } from 'firebase/auth'
 import { getFunctions } from 'firebase/functions'
 
 // Real config, gitignored — see firebase-config.example.js for the template.
@@ -29,3 +30,7 @@ export const db = firebaseReady
   : null
 
 export const functions = firebaseReady ? getFunctions(app) : null
+
+// Anonymous Auth (Layer 2): separates users' plots by uid, no
+// email/password or social login. See CLAUDE.md / brief for the reasoning.
+export const auth = firebaseReady ? getAuth(app) : null
