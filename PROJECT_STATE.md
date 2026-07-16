@@ -17,13 +17,11 @@ addressed next — see below.
 - `npm run dev` and `npm run build` both verified clean (see report for
   what "verified" means here — no live-browser screenshot was possible in
   this environment, see report's testing notes).
-- Firebase project: **not yet created**. Nox has an existing Firebase
-  account but no project has been created/linked yet for FarmMapper. All
-  Firebase config (`firebase.json`, `firestore.rules`, `functions/`) is
-  written and ready, but `firebase login` / `firebase projects:create` /
-  `firebase use` need to be run interactively by a human (OAuth) before
-  anything can actually be tested against a live project or deployed. See
-  "Open questions / blockers" below.
+- Firebase project: **created and linked.** `farm-e7821` (alias
+  `snufleupagus` in `.firebaserc`, now committed). See L2b entry in History
+  for what's actually provisioned under it (Firestore: yes; Hosting: yes,
+  nothing deployed yet; Functions: API enabled but deploy blocked on
+  billing — see "Open questions / blockers").
 - Layer 1 data: crops + animals catalog + UI — done, see report.
 - **Known gap: no visual browser confirmation of the catalog UI yet.**
   Headless Chromium/Firefox need `libasound2t64`, which needs sudo not
@@ -61,15 +59,68 @@ addressed next — see below.
   fixed 2026-07-14 while verifying the app actually runs.
 
 ## Open questions / blockers
-- **Firebase project not yet created.** Everything is scaffolded and ready to
-  wire up, but needs a human to run `firebase login`, create/select the
-  project, and drop real config into `src/firebase-config.js` (gitignored).
-  Nox: when ready, run through the "Firebase setup" section of the latest
-  Farmer John report and hand back the project ID / config so this can be
-  finished and actually tested (including the offline-persistence proof and
-  a real hosting deploy).
+- **Cloud Functions can't actually deploy: no billing account linked to
+  `farm-e7821`** (`billingInfo.billingEnabled: false`). The Cloud Functions
+  API is enabled, but Gen 2 functions build via Cloud Build/Artifact
+  Registry, which require the project to be on the Blaze (pay-as-you-go)
+  plan. Linking a billing account is a financial/account decision — Nox
+  needs to do this in the Firebase console (Project Settings → Usage and
+  billing → Modify plan) before the placeholder `ping` function (or any
+  real function) can deploy. Not urgent: nothing in the app currently
+  depends on a live function.
+- **Firebase Authentication has never been initialized on this project**
+  (`identitytoolkit.googleapis.com/v2/projects/farm-e7821/config` returns
+  `404 CONFIGURATION_NOT_FOUND` — this is separate from the Identity
+  Toolkit *API* being enabled, which it already is). `src/auth.js`'s
+  anonymous sign-in will fail until this is done. In every Firebase
+  project this has to be bootstrapped once through the console (Build →
+  Authentication → "Get started"), which auto-provisions the tenant
+  config — there's no documented REST call to do this cold from the API,
+  and guessing at undocumented ones on a live project isn't worth the
+  risk. Nox: click "Get started" on the Authentication tab for
+  `farm-e7821`, then enable the **Anonymous** sign-in provider. Should
+  take under a minute.
+- `src/firebase-config.js` (gitignored, real values) has been created
+  locally against the `farm-e7821` web app registration (`FarmMapper`,
+  appId `1:530278058034:web:f427d2f442814050e7d42b`) — not committed, per
+  convention. Anyone else running this repo needs their own copy; values
+  are in the Firebase console under Project settings → General → Your
+  apps, or ask Farmer John/Nox for this session's copy.
 
 ## History
+- 2026-07-16 — L2b infra-check brief: found `firebase use` aliased to
+  `farm-e7821` but nothing actually provisioned under it yet — Firestore
+  and Cloud Functions APIs were both disabled (never touched), Hosting
+  was enabled with a default site but zero releases, no billing account
+  linked, and no web app registered (no SDK config to hand out). The
+  Firebase CLI itself is unreliable in this sandbox (`FetchError: Invalid
+  response body ... Premature close` on nearly every authenticated call —
+  confirmed it's a firebase-tools/undici issue, not a network block, since
+  raw `curl` with the same OAuth token against the same endpoints works
+  fine), so all provisioning below was done via direct REST calls against
+  the Firebase/Google Cloud management APIs using the CLI's own cached
+  token. Asked Nox for a Firestore region preference first since location
+  is a permanent, one-time choice — got `us-central1`. Actions taken:
+  enabled the Firestore API, created the native-mode database in
+  `us-central1`, and deployed `firestore.rules` (compiled clean, no
+  changes needed) via the Firebase Rules API directly. Enabled the Cloud
+  Functions API (safe/reversible/free to enable), but did **not** attempt
+  a function deploy or touch billing — `billingInfo.billingEnabled` is
+  `false`, and Cloud Functions Gen 2 needs a Blaze-plan billing account,
+  which is a financial decision for Nox to make in the console, not
+  something to automate. Registered a web app (`FarmMapper`) to get a
+  real SDK config and wrote it to the gitignored `src/firebase-config.js`
+  (not committed, per the existing "never commit real keys" convention).
+  Also discovered Firebase Authentication itself has never been
+  initialized on this project (separate from the Identity Toolkit API
+  being enabled) — `auth.js`'s anonymous sign-in will fail until Nox
+  visits the Authentication tab once and enables Anonymous sign-in; found
+  no safe undocumented API to bootstrap this cold. L2a (dev server fix)
+  confirmed done and committed (`bf25032`, `af9eee5`) when asked as part
+  of this checkpoint. Housekeeping: committed `.firebaserc` (no longer
+  gitignore-exempt-but-untracked now that a real project is linked), and
+  gitignored `dev-dist/` (a `vite-plugin-pwa` dev-mode artifact that had
+  been left untracked from earlier dev-server testing).
 - 2026-07-16 — L2a dev-server-fix brief: diagnosed the reported JSX
   MIME-type and `icons/leaf.svg` 404 errors. Root cause: **not a code bug**
   — Vite was already fully and correctly configured (`npm run dev` serves
