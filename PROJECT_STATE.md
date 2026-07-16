@@ -7,7 +7,9 @@ project orientation.
 Layer 0 (scaffold) + Layer 1 (static catalog) — code complete and committed,
 brief: `briefs/BRIEF_L0_L1_scaffold_and_catalog (1).md`. Report filed:
 `briefs/REPORT_L0_L1_scaffold_and_catalog.md`. Followed by a small cleanup
-pass, brief: `briefs/BRIEF_L1a_cleanup.md`.
+pass, brief: `briefs/BRIEF_L1a_cleanup.md`. Layer 2 basic map landed
+(`9d6b160`). L2a dev-server-fix brief (`briefs/BRIEF_L2a_dev_server_fix.md`)
+addressed next — see below.
 
 ## Status
 - Repo scaffold: done. Committed as `e8803f2` (Layer 0) and `9b3925f`
@@ -68,6 +70,23 @@ pass, brief: `briefs/BRIEF_L1a_cleanup.md`.
   a real hosting deploy).
 
 ## History
+- 2026-07-16 — L2a dev-server-fix brief: diagnosed the reported JSX
+  MIME-type and `icons/leaf.svg` 404 errors. Root cause: **not a code bug**
+  — Vite was already fully and correctly configured (`npm run dev` serves
+  `main.jsx` as `text/javascript` and `public/icons/leaf.svg` resolves
+  correctly, confirmed via curl against both the working tree and a fresh
+  clean clone). `README.md` had zero setup/run instructions (`# Farm` and
+  nothing else), so the app had been tested by pointing a plain static
+  server (`live-server`) at raw source instead of running `npm run dev` —
+  that's what produced both errors. Fixed by writing real setup/dev/build/
+  deploy instructions into `README.md`, including an explicit callout not
+  to serve `index.html` with a plain static server. Added the standing
+  "commit early and often" environment note to `CLAUDE.md` per the brief.
+  Committed as `bf25032`. No headless-browser visual confirmation was
+  possible in this sandbox (no `chromium-cli`, no system Chromium —
+  same `libasound2t64`/sudo gap noted in the L0/L1 report); verification
+  was via `npm run build` (clean) plus curl status/MIME checks against a
+  running dev server, both in-place and from a fresh `git clone`.
 - 2026-07-13 — Layer 0 + Layer 1 brief received and started. Repo was empty
   (just `README.md`) prior to this.
 - 2026-07-14 — Verified `npm run dev` / `npm run build`, fixed the
